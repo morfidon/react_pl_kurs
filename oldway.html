@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosta aplikacja</title>
+</head>
+<body>
+    <div id="root">
+        <h1>Witaj!</h1>
+        <p id="counter">Kliknięto 0 razy</p>
+        <button id="clickButton">Kliknij mnie</button>
+    </div>
+
+    <script>
+        // Inicjalizacja zmiennej przechowującej liczbę kliknięć
+        let count = 0;
+
+        // Pobranie referencji do elementów HTML
+        const counterElement = document.getElementById('counter');
+        const buttonElement = document.getElementById('clickButton');
+
+        // Dodanie event listenera do przycisku
+        buttonElement.addEventListener('click', function(){
+ 
+            count++;
+            
+            // Aktualizacja tekstu w elemencie <p>
+            counterElement.textContent = `Kliknięto ${count} razy`;
+        });
+
+    </script>
+</body>
+</html>
