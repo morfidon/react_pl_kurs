@@ -9,18 +9,11 @@
     <title>Prosta aplikacja</title>
 </head>
 <body>
-    <div id="root"></div>    <!-- <h1>Witaj!</h1>
-        <p id="counter">Kliknięto 0 razy</p>
-        <button id="clickButton">Kliknij mnie</button>
-    
--->     
-    <script type="text/babel"> //tu jest skladnia jsx
-        function App() //komponent, element to funkcja
+    <div id="root"></div>  
+    <script type="text/babel"> 
+        function App() 
         {
-            // const hookedArray = React.useState(0);
-            // const counter = hookedArray[0];
-            // const setCounter = hookedArray[1];
-            
+          
             const [counter, setCounter] = React.useState(0); //[0, f]
 
             const increaseValue = () =>
@@ -39,22 +32,7 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         
         root.render(<App />);
-        // // Inicjalizacja zmiennej przechowującej liczbę kliknięć
-        // let count = 0;
-
-        // // Pobranie referencji do elementów HTML
-        // const counterElement = document.getElementById('counter');
-        // const buttonElement = document.getElementById('clickButton');
-
-        // // Dodanie event listenera do przycisku
-        // buttonElement.addEventListener('click', function(){
- 
-        //     count++;
-            
-        //     // Aktualizacja tekstu w elemencie <p>
-        //     counterElement.textContent = `Kliknięto ${count} razy`;
-        // });
-
+     
     </script>
 </body>
 </html>
