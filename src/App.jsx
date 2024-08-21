@@ -6,8 +6,8 @@ function App()
 
     return (
       <> 
-        <ClickCounter /> 
-        <ClickCounter /> 
+        <ClickCounter incrementBy={5} buttonText='Powiększ o 5'/> 
+        <ClickCounter initalValue={10} /> 
         <ClickCounter /> 
       </>     
     );

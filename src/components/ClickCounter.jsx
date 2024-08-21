@@ -1,17 +1,18 @@
 import { useState } from 'react';
-function ClickCounter()
+function ClickCounter({incrementBy = 1, initalValue = 0, buttonText = "Kliknij mnie"})
 {
-    const [counter, setCounter] = useState(0);
+  //{incrementBy = 1, initalValue = 0, buttonText = "Kliknij mnie"} = {incrementBy: 5, buttonText: "Powiększ o 5"}
+    const [counter, setCounter] = useState(initalValue);
 
     const increaseValue = () =>
     {
-        setCounter(counter + 1);
+        setCounter(counter + incrementBy);
     }
     return (
       <> 
         <h1>Witaj!</h1>
         <p>Kliknięto {counter} razy</p>
-        <button onClick={increaseValue}>Kliknij mnie</button>
+        <button onClick={increaseValue}>{buttonText}</button>
       </>     
     );    
 }
