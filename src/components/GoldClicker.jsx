@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function GoldClicker() 
 {
     const [gold, setGold] = useState(100);
@@ -15,6 +15,14 @@ function GoldClicker()
             setAutoClickerCost(prevAutoClickerCost => prevAutoClickerCost * 3);
         }
     }
+    //useEffect wywołuje się na starcie
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setGold(prevGold => prevGold + 1 * autoClickers);
+        }, 1000);
+
+        return () => clearInterval(timer); //funkcja czyszcząca
+    }, [autoClickers]) //wtedy gdy autoClickers się zmienia
 
     const upgradeClickPower = () => {
         if(gold >= clickUpgradeCost)
