@@ -41,8 +41,12 @@ function GoldClicker()
             <button onClick={() => setGold(prevGold => prevGold + clickPower)
                
             }>Dig gold</button>
-            <button onClick={upgradeClickPower}>Upgrade click power (Cost: {clickUpgradeCost})</button>
-            <button onClick={buyAutoClicker}>Buy Auto-Clicker (Cost: {autoClickerCost})</button>
+            <button onClick={upgradeClickPower} disabled={gold < clickUpgradeCost}>
+                Upgrade click power (Cost: {clickUpgradeCost})
+            </button>
+            <button onClick={buyAutoClicker} disabled={gold < autoClickerCost}>
+                Buy Auto-Clicker (Cost: {autoClickerCost})
+            </button>
             
 
         </div>
