@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
+import './GoldClicker.css'
 function GoldClicker() 
 {
     const [gold, setGold] = useState(100);
@@ -34,20 +35,24 @@ function GoldClicker()
         }
     }
     return(
-        <div>
+        <div className="gold-clicker">
             <h1>Gold Clicker</h1>
-            <p><Coins size={20} /> Gold: {gold}</p>
-            <p><Pickaxe /> Click power: {clickPower}</p>
-            <p><Cpu /> Auto-Clickers: {autoClickers}</p>
-            <button onClick={() => setGold(prevGold => prevGold + clickPower)
-               
-            }><Coins size={20} /> Dig gold</button>
-            <button onClick={upgradeClickPower} disabled={gold < clickUpgradeCost}>
-            <Pickaxe /> Upgrade click power (Cost: {clickUpgradeCost})
-            </button>
-            <button onClick={buyAutoClicker} disabled={gold < autoClickerCost}>
-            <Cpu /> Buy Auto-Clicker (Cost: {autoClickerCost})
-            </button>
+            <div className="stats">
+                <p><Coins /> Gold: {gold}</p>
+                <p><Pickaxe /> Click power: {clickPower}</p>
+                <p><Cpu /> Auto-Clickers: {autoClickers}</p>
+            </div>
+            <div className="buttons">
+                <button onClick={() => setGold(prevGold => prevGold + clickPower)
+                
+                }><Coins /> Dig gold</button>
+                <button onClick={upgradeClickPower} disabled={gold < clickUpgradeCost}>
+                <Pickaxe /> Upgrade click power (Cost: {clickUpgradeCost})
+                </button>
+                <button onClick={buyAutoClicker} disabled={gold < autoClickerCost}>
+                <Cpu /> Buy Auto-Clicker (Cost: {autoClickerCost})
+                </button>
+            </div>
             
 
         </div>
