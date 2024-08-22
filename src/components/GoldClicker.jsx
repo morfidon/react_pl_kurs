@@ -8,9 +8,9 @@ function GoldClicker()
     const upgradeClickPower = () => {
         if(gold >= clickUpgradeCost)
         {
-            setGold(gold - clickUpgradeCost);
-            setClickPower(clickPower + 1);
-            setClickUpgradeCost(clickUpgradeCost * 2);
+            setGold(prevGold => prevGold - clickUpgradeCost);
+            setClickPower(prevClickPower => prevClickPower * 1);
+            setClickUpgradeCost(prevClickUpgradeCost => prevClickUpgradeCost * 2);
         }
     }
     return(
@@ -18,7 +18,9 @@ function GoldClicker()
             <h1>Gold Clicker</h1>
             <p>Gold: {gold}</p>
             <p>Click power: {clickPower}</p>
-            <button onClick={() => setGold(gold + clickPower)}>Dig gold</button>
+            <button onClick={() => setGold(prevGold => prevGold + clickPower)
+               
+            }>Dig gold</button>
             <button onClick={upgradeClickPower}>Upgrade click power (Cost: {clickUpgradeCost})</button>
 
         </div>
