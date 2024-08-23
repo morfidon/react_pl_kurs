@@ -1,8 +1,26 @@
 import { useState, useEffect } from 'react';
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
 import { motion } from "framer-motion"
- 
+import merge from 'lodash.merge';
 import './GoldClicker.css'
+
+const animatedProperties =
+{
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+}
+function AnimatedValue({value, customAnimationProps = {}})
+{
+    const mergedProps = merge(animatedProperties, customAnimationProps);
+    return (
+        <motion.span
+        key={value}
+        {...mergedProps}
+        >
+            {value}
+        </motion.span>
+    );
+}
 function GoldClicker() 
 {
     const [gold, setGold] = useState(100);
@@ -36,7 +54,7 @@ function GoldClicker()
             setClickUpgradeCost(prevClickUpgradeCost => prevClickUpgradeCost * 2);
         }
     }
-    const animationProps =
+    const customProps =
     {
         initial: {opacity: 0.3, y: -10}, 
         animate: {opacity: 1, y: 0}
@@ -46,13 +64,13 @@ function GoldClicker()
             <h1>Gold Clicker</h1>
             <div className="stats">
                 <p>
-                    <Coins /> Gold: <motion.span key={gold} {...animationProps}>{gold}</motion.span>
+                    <Coins /> Gold: <AnimatedValue value={gold} customAnimationProps={customProps} />
                 </p>
                 <p>
-                    <Pickaxe /> Click power: <motion.span key={clickPower} {...animationProps}>{clickPower}</motion.span>
+                    <Pickaxe /> Click power: <AnimatedValue value={clickPower} />
                 </p>
                 <p>
-                    <Cpu /> Auto-Clickers: <motion.span key={autoClickers} {...animationProps} initial={{...animationProps.initial, y: 10}}>{autoClickers}</motion.span>
+                    <Cpu /> Auto-Clickers: <AnimatedValue value={autoClickers} />
                 </p>
             </div>
             <div className="buttons">
