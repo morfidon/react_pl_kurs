@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
+import { motion } from "framer-motion"
+ 
 import './GoldClicker.css'
 function GoldClicker() 
 {
@@ -30,7 +32,7 @@ function GoldClicker()
         if(gold >= clickUpgradeCost)
         {
             setGold(prevGold => prevGold - clickUpgradeCost);
-            setClickPower(prevClickPower => prevClickPower * 1);
+            setClickPower(prevClickPower => prevClickPower + 1);
             setClickUpgradeCost(prevClickUpgradeCost => prevClickUpgradeCost * 2);
         }
     }
