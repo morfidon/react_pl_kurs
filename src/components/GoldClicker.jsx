@@ -36,13 +36,24 @@ function GoldClicker()
             setClickUpgradeCost(prevClickUpgradeCost => prevClickUpgradeCost * 2);
         }
     }
+    const animationProps =
+    {
+        initial: {opacity: 0.3, y: -10}, 
+        animate: {opacity: 1, y: 0}
+    }
     return(
         <div className="gold-clicker">
             <h1>Gold Clicker</h1>
             <div className="stats">
-                <p><Coins /> Gold: <motion.span key={gold} initial={{opacity: 0}} animate={{opacity: 1}}>{gold}</motion.span></p>
-                <p><Pickaxe /> Click power: <motion.span key={clickPower} initial={{opacity: 0}} animate={{opacity: 1}}>{clickPower}</motion.span></p>
-                <p><Cpu /> Auto-Clickers: <motion.span key={autoClickers} initial={{opacity: 0}} animate={{opacity: 1}}>{autoClickers}</motion.span></p>
+                <p>
+                    <Coins /> Gold: <motion.span key={gold} {...animationProps}>{gold}</motion.span>
+                </p>
+                <p>
+                    <Pickaxe /> Click power: <motion.span key={clickPower} {...animationProps}>{clickPower}</motion.span>
+                </p>
+                <p>
+                    <Cpu /> Auto-Clickers: <motion.span key={autoClickers} {...animationProps} initial={{...animationProps.initial, y: 10}}>{autoClickers}</motion.span>
+                </p>
             </div>
             <div className="buttons">
                 <button onClick={() => setGold(prevGold => prevGold + clickPower)
