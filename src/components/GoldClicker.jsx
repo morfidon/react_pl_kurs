@@ -3,7 +3,7 @@ import { Coins, Pickaxe, Cpu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { scaleOnHover} from './utils/animations.jsx';
 import AnimatedValue from './functional/AnimatedValue';
-import './GoldClicker.css'
+import styles from './GoldClicker.module.css'
 
 
 function GoldClicker() 
@@ -41,9 +41,9 @@ function GoldClicker()
     }
 
     return(
-        <div className="gold-clicker">
+        <div className={styles.goldClicker}>
             <h1>Gold Clicker</h1>
-            <div className="stats">
+            <div className={styles.stats}>
                 <p>
                     <Coins /> Gold: <AnimatedValue value={gold} customAnimationProps={{transition: 0.1}} />
                 </p>
@@ -54,7 +54,7 @@ function GoldClicker()
                     <Cpu /> Auto-Clickers: <AnimatedValue value={autoClickers} />
                 </p>
             </div>
-            <div className="buttons">
+            <div className={styles.buttons}>
                 <motion.button onClick={() => setGold(prevGold => prevGold + clickPower)}
                 {...scaleOnHover}
                 ><Coins /> Dig gold</motion.button>
