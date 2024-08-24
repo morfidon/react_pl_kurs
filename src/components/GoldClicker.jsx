@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { scaleOnHover} from './utils/animations.jsx';
 import AnimatedValue from './functional/AnimatedValue';
 import './GoldClicker.css'
 
@@ -37,29 +39,25 @@ function GoldClicker()
             setClickUpgradeCost(prevClickUpgradeCost => prevClickUpgradeCost * 2);
         }
     }
-    const customProps =
-    {
-        initial: {opacity: 0.3, y: -10}, 
-        animate: {opacity: 1, y: 0}
-    }
+
     return(
         <div className="gold-clicker">
             <h1>Gold Clicker</h1>
             <div className="stats">
                 <p>
-                    <Coins /> Gold: <AnimatedValue value={gold} customAnimationProps={customProps} />
+                    <Coins /> Gold: <AnimatedValue value={gold} customAnimationProps={{transition: 0.1}} />
                 </p>
                 <p>
-                    <Pickaxe /> Click power: <AnimatedValue value={clickPower} />
+                    <Pickaxe /> Click power: <AnimatedValue value={clickPower} animationType='bounce'/>
                 </p>
                 <p>
                     <Cpu /> Auto-Clickers: <AnimatedValue value={autoClickers} />
                 </p>
             </div>
             <div className="buttons">
-                <button onClick={() => setGold(prevGold => prevGold + clickPower)
-                
-                }><Coins /> Dig gold</button>
+                <motion.button onClick={() => setGold(prevGold => prevGold + clickPower)}
+                {...scaleOnHover}
+                ><Coins /> Dig gold</motion.button>
                 <button onClick={upgradeClickPower} disabled={gold < clickUpgradeCost}>
                 <Pickaxe /> Upgrade click power (Cost: {clickUpgradeCost})
                 </button>
