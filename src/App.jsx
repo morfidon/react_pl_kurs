@@ -1,5 +1,6 @@
 import './App.css'
 import GoldClicker from './components/GoldClicker';
+import ThemeToggleButton from './components/ThemeToggleButton';
 
 function App() 
 {           
@@ -7,6 +8,7 @@ function App()
     return (
       <> 
         <GoldClicker />
+        <ThemeToggleButton />
       </>     
     );
 }
