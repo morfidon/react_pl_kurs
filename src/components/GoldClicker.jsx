@@ -57,7 +57,9 @@ function GoldClicker()
             <div className={styles.buttons}>
                 <motion.button onClick={() => setGold(prevGold => prevGold + clickPower)}
                 {...scaleOnHover}
-                ><Coins /> Dig gold</motion.button>
+                >
+                
+                <Coins /> Dig gold</motion.button>
                 <button onClick={upgradeClickPower} disabled={gold < clickUpgradeCost}>
                 <Pickaxe /> Upgrade click power (Cost: {clickUpgradeCost})
                 </button>
