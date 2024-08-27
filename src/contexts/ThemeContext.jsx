@@ -1,18 +1,12 @@
-import { createContext, useEffect } from 'react';
-import useLocalStorageState from 'use-local-storage-state'
+import { createContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useLocalStorageState('theme',
-        {
-            defaultValue: 'light',
-        }
-    );
+    const [theme, setTheme] = useState('light');
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
-
     }, [theme]);  
 
     return (

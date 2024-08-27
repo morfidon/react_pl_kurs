@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { scaleOnHover} from './utils/animations.jsx';
 import AnimatedValue from './functional/AnimatedValue';
 import styles from './GoldClicker.module.css'
-import useLocalStorageState from 'use-local-storage-state'
-import useSessionStorageState from 'use-session-storage-state'
+
+
 function GoldClicker() 
 {
-    const [gold, setGold] = useSessionStorageState('gold',{defaultValue:100});
-    const [clickPower, setClickPower] = useSessionStorageState('clickPower',{defaultValue:1});
-    const [clickUpgradeCost, setClickUpgradeCost] = useSessionStorageState('clickUpgradeCost',{defaultValue:10});
-    const [autoClickerCost, setAutoClickerCost] = useSessionStorageState('autoClickerCost',{defaultValue:20});
-    const [autoClickers, setAutoClickers] = useSessionStorageState('autoClickers',{defaultValue:0});
+    const [gold, setGold] = useState(100);
+    const [clickPower, setClickPower] = useState(1);
+    const [clickUpgradeCost, setClickUpgradeCost] = useState(10);
+    const [autoClickerCost, setAutoClickerCost] = useState(20);
+    const [autoClickers, setAutoClickers] = useState(0);
 
     const buyAutoClicker = () => {
         if(gold >= autoClickerCost)
@@ -24,7 +24,6 @@ function GoldClicker()
     }
     //useEffect wywołuje się na starcie
     useEffect(() => {
-       
         const timer = setInterval(() => {
             setGold(prevGold => prevGold + 1 * autoClickers);
         }, 1000);
