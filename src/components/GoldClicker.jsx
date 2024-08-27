@@ -5,14 +5,14 @@ import { scaleOnHover} from './utils/animations.jsx';
 import AnimatedValue from './functional/AnimatedValue';
 import styles from './GoldClicker.module.css'
 import useLocalStorageState from 'use-local-storage-state'
-import useSessionStorageState from 'use-session-storage-state'
+
 function GoldClicker() 
 {
-    const [gold, setGold] = useSessionStorageState('gold',{defaultValue:100});
-    const [clickPower, setClickPower] = useSessionStorageState('clickPower',{defaultValue:1});
-    const [clickUpgradeCost, setClickUpgradeCost] = useSessionStorageState('clickUpgradeCost',{defaultValue:10});
-    const [autoClickerCost, setAutoClickerCost] = useSessionStorageState('autoClickerCost',{defaultValue:20});
-    const [autoClickers, setAutoClickers] = useSessionStorageState('autoClickers',{defaultValue:0});
+    const [gold, setGold] = useLocalStorageState('gold',{defaultValue:100});
+    const [clickPower, setClickPower] = useLocalStorageState('clickPower',{defaultValue:1});
+    const [clickUpgradeCost, setClickUpgradeCost] = useLocalStorageState('clickUpgradeCost',{defaultValue:10});
+    const [autoClickerCost, setAutoClickerCost] = useLocalStorageState('autoClickerCost',{defaultValue:20});
+    const [autoClickers, setAutoClickers] = useLocalStorageState('autoClickers',{defaultValue:0});
 
     const buyAutoClicker = () => {
         if(gold >= autoClickerCost)
