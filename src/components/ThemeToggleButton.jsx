@@ -16,7 +16,7 @@ function ThemeToggleButton()
                 onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
 
             >
-                Light / Dark
+                {theme === 'light' ? 'Dark' : 'Light'}
             </button>
        
         </>
