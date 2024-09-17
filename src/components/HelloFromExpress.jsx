@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import { RotatingLines } from 'react-loader-spinner'
+import { toast } from 'react-toastify';
 function HelloFromExpress() 
 {
     const [fetchMessage, setFetchMessage] = useState('');
     useEffect(() => {
         const fetchMessage = async () => 
         {
+            toast.info("Loading...");
             const response = await fetch('/api/hello');
             const data = await response.text();
-            setTimeout(() => setFetchMessage(data), 1000);
+            setTimeout(() => 
+                {
+                    setFetchMessage(data)
+                    toast.dismiss();
+                    toast.success("Loaded");
+                }
+            , 1000);
           
 
         };
