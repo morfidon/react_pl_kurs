@@ -8,14 +8,14 @@ function HelloFromExpress()
         {
             const response = await fetch('/api/hello');
             const data = await response.text();
-
-            setFetchMessage(data);
+            setTimeout(() => setFetchMessage(data), 1000);
+          
 
         };
 
         fetchMessage();
     }, []);
-    return ( <h1>{fetchMessage}</h1> );
+    return ( <h1>{fetchMessage ? fetchMessage : 'Loading...'}</h1> );
 }
 
 export default HelloFromExpress;
