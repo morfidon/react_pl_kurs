@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import HelloFromExpress from './components/HelloFromExpress';
 
 import { ThemeProvider } from './contexts/ThemeContext';
+import TaskList from './components/TaskList';
 
 function App() 
 {  
@@ -12,8 +13,7 @@ function App()
     return (
       <> 
         <ThemeProvider>
-          <ToastContainer theme='dark' />
-          <HelloFromExpress />
+          <TaskList />
         </ThemeProvider>
       </>     
     );
