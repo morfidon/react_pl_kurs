@@ -1,3 +1,4 @@
+import { v4 } from 'uuid'
 function TaskList(){
     const tasks = [
         'Do homework',
@@ -5,13 +6,20 @@ function TaskList(){
         'Clean room',
         'Cook dinner'       
     ]
+    const tasksProccessed = tasks.map(task => (
+        {
+            id: v4(),
+            text: task
+        }
+    ))
+
     // map - przyporządkuj
     
     return (
         <>
            <ul>
                 {
-                    tasks.map(task => <li>{task}</li>)
+                    tasksProccessed.map(task => <li key={task.id}>{task.text}</li>)
                 }
            </ul>
         </>     
