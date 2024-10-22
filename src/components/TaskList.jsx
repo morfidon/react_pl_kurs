@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { v4 } from 'uuid'
 function TaskList(){
     const tasks = [
@@ -13,7 +13,10 @@ function TaskList(){
             text: task
         }
     )))
-
+        // Licznik renderów
+        const renderCount = useRef(0);
+        renderCount.current++;
+    const newTaskInputRef = useRef()
     // map - przyporządkuj
     // tasks.map(element_z_taska => co_ma_sie_stac_z_elemen_z_taska)
     // tasks.filter(element_z_taska => warunek)
@@ -29,14 +32,18 @@ function TaskList(){
             [...tasksDictionary,
             {
                 id: v4(),
-                text: document.getElementById("taskInput").value
+                text: newTaskInputRef.current.value
             }]
         )
-        document.getElementById("taskInput").value = '';
+        newTaskInputRef.current.value = '';
     }
+    //useRef - hook
+    //niekontrolowany input
+    //wirtualny DOM - kopii wirtualnej tego oryginał (tego DOM co widzi użytkownik)
     return (
         <>
-            <input type="text" id="taskInput" />
+        <p>Liczba renderów: {renderCount.current}</p>
+           <input type="text" ref={newTaskInputRef} />
            <button onClick={handleAddTask}>Add Task</button>
            <ul>
                 {
