@@ -16,7 +16,7 @@ function TaskList(){
         // Licznik renderów
         const renderCount = useRef(0);
         renderCount.current++;
-    const newTaskInputRef = useRef()
+    const [newTask, setNewTask] = useState('')
     // map - przyporządkuj
     // tasks.map(element_z_taska => co_ma_sie_stac_z_elemen_z_taska)
     // tasks.filter(element_z_taska => warunek)
@@ -27,23 +27,27 @@ function TaskList(){
             task => task.id !== id
         ))
     };
+
     const handleAddTask = () => { 
         setTasksDictionary(
             [...tasksDictionary,
             {
                 id: v4(),
-                text: newTaskInputRef.current.value
+                text: newTask
             }]
         )
-        newTaskInputRef.current.value = '';
+        setNewTask('');
     }
     //useRef - hook
     //niekontrolowany input
     //wirtualny DOM - kopii wirtualnej tego oryginał (tego DOM co widzi użytkownik)
+    //kontrolowanych input
+    //onChange -
     return (
         <>
         <p>Liczba renderów: {renderCount.current}</p>
-           <input type="text" ref={newTaskInputRef} />
+           <input type="text" value={newTask}
+           onChange={(e) => setNewTask(e.target.value)}/>
            <button onClick={handleAddTask}>Add Task</button>
            <ul>
                 {
