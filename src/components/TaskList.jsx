@@ -24,8 +24,20 @@ function TaskList(){
             task => task.id !== id
         ))
     };
+    const handleAddTask = () => { 
+        setTasksDictionary(
+            [...tasksDictionary,
+            {
+                id: v4(),
+                text: document.getElementById("taskInput").value
+            }]
+        )
+        document.getElementById("taskInput").value = '';
+    }
     return (
         <>
+            <input type="text" id="taskInput" />
+           <button onClick={handleAddTask}>Add Task</button>
            <ul>
                 {
                     tasksDictionary.map(task => 
