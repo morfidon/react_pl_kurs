@@ -28,7 +28,10 @@ function TaskList(){
         ))
     };
 
-    const handleAddTask = () => { 
+    const handleAddTask = (e) => { 
+        e.preventDefault();
+        if(newTask.trim() === '') return;
+        
         setTasksDictionary(
             [...tasksDictionary,
             {
@@ -46,9 +49,11 @@ function TaskList(){
     return (
         <>
         <p>Liczba renderów: {renderCount.current}</p>
-           <input type="text" value={newTask}
-           onChange={(e) => setNewTask(e.target.value)}/>
-           <button onClick={handleAddTask}>Add Task</button>
+           <form onSubmit={handleAddTask}>
+               <input type="text" value={newTask}
+               onChange={(e) => setNewTask(e.target.value)}/>
+               <button type="submit">Add Task</button>
+           </form>
            <ul>
                 {
                     tasksDictionary.map(task => 
