@@ -17,6 +17,7 @@ function TaskList(){
         const renderCount = useRef(0);
         renderCount.current++;
     const [newTask, setNewTask] = useState('')
+    const [sortDirection, setSortDirection] = useState('asc') //ascending
     const inputTaskRef = useRef(null);
     // map - przyporządkuj
     // tasks.map(element_z_taska => co_ma_sie_stac_z_elemen_z_taska)
@@ -49,6 +50,17 @@ function TaskList(){
         setNewTask('');
         
     }
+
+    const handleSort = () => {
+        const sortedTasks = [...tasksDictionary].sort((a, b) => {
+            return sortDirection === 'asc' ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text)
+        })
+
+        setTasksDictionary(sortedTasks)
+        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+        
+    }
+
     //useRef - hook
     //niekontrolowany input
     //wirtualny DOM - kopii wirtualnej tego oryginał (tego DOM co widzi użytkownik)
@@ -64,6 +76,9 @@ function TaskList(){
                />
                <button type="submit">Add Task</button>
            </form>
+           <button onClick={handleSort}>
+               Sort {sortDirection === 'asc' ? 'desc' : 'asc'}
+           </button>
            <ul>
                 {
                     tasksDictionary.map(task => 
