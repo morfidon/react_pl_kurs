@@ -17,6 +17,7 @@ function TaskList(){
         const renderCount = useRef(0);
         renderCount.current++;
     const [newTask, setNewTask] = useState('')
+    const inputTaskRef = useRef(null);
     // map - przyporządkuj
     // tasks.map(element_z_taska => co_ma_sie_stac_z_elemen_z_taska)
     // tasks.filter(element_z_taska => warunek)
@@ -29,9 +30,11 @@ function TaskList(){
     };
 
     const handleAddTask = (e) => { 
-        e.preventDefault();
-        if(newTask.trim() === '') return;
         
+        e.preventDefault();
+        inputTaskRef.current.focus();
+        if(newTask.trim() === '') return;
+
         setTasksDictionary(
             [...tasksDictionary,
             {
@@ -40,6 +43,7 @@ function TaskList(){
             }]
         )
         setNewTask('');
+        
     }
     //useRef - hook
     //niekontrolowany input
@@ -51,7 +55,9 @@ function TaskList(){
         <p>Liczba renderów: {renderCount.current}</p>
            <form onSubmit={handleAddTask}>
                <input type="text" value={newTask}
-               onChange={(e) => setNewTask(e.target.value)}/>
+               onChange={(e) => setNewTask(e.target.value)}
+                ref={inputTaskRef}
+               />
                <button type="submit">Add Task</button>
            </form>
            <ul>
