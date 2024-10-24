@@ -16,6 +16,30 @@ const TaskItem = ({task, handleRemoveTask}) =>
         <button onClick={() => handleRemoveTask(task.id)}>X</button>
     </li>
 )
+const TaskForm = ({handleAddTask}) =>
+{
+    const [newTask, setNewTask] = useState('')
+    const inputTaskRef = useRef(null);
+
+    const handleSubmit = (e) => 
+    {        
+        e.preventDefault();
+        inputTaskRef.current.focus();
+        if(newTask.trim() === '') return;
+
+        handleAddTask(newTask);
+        setNewTask('');
+    }
+    return (
+        <form onSubmit={handleSubmit}>
+            <input type="text" value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            ref={inputTaskRef}
+            />
+            <button type="submit">Add Task</button>
+        </form>
+    )
+}
 function TaskList(){
     const tasks = [
         'Do homework', 
@@ -32,9 +56,9 @@ function TaskList(){
         // Licznik renderów
         const renderCount = useRef(0);
         renderCount.current++;
-    const [newTask, setNewTask] = useState('')
+
     const [sortDirection, setSortDirection] = useState('asc') //ascending
-    const inputTaskRef = useRef(null);
+
 
     const handleRemoveTask = (id) => //79
     {
@@ -43,11 +67,9 @@ function TaskList(){
         ))
     };
 
-    const handleAddTask = (e) => { 
-        
-        e.preventDefault();
-        inputTaskRef.current.focus();
-        if(newTask.trim() === '') return;
+    const handleAddTask = (newTask) => 
+    { 
+
 
         const updatedTasks = (
             [...tasksDictionary,
@@ -60,7 +82,7 @@ function TaskList(){
 
         setTasksDictionary(updatedTasks)
 
-        setNewTask('');
+       
         
     }
 
@@ -77,13 +99,8 @@ function TaskList(){
     return (
         <>
         <p>Liczba renderów: {renderCount.current}</p>
-           <form onSubmit={handleAddTask}>
-               <input type="text" value={newTask}
-               onChange={(e) => setNewTask(e.target.value)}
-                ref={inputTaskRef}
-               />
-               <button type="submit">Add Task</button>
-           </form>
+           <TaskForm onAddTask={handleAddTask} />
+
            <SortButton 
                 sortDirection={sortDirection}
                 onSort={handleSort}
